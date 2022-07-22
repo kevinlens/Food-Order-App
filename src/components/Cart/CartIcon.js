@@ -1,3 +1,4 @@
+//COMPONENT
 const CartIcon = () => {
   return (
     <svg

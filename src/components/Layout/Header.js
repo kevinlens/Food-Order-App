@@ -7,6 +7,7 @@ import classes from './Header.module.css';
 //IMPORTED COMPONENTS
 import HeaderCartButton from './HeaderCartButton';
 
+//COMPONENT
 const Header = (props) => {
   return (
     <>
