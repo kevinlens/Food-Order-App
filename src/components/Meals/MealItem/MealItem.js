@@ -1,5 +1,8 @@
 //CLASSES
-import classes from './MealItem.module.css'
+import classes from './MealItem.module.css';
+
+//IMPORTED COMPONENT 
+import MealItemForm from './MealItemForm';
 
 //COMPONENT
 const MealItem = (props) => {
@@ -13,7 +16,9 @@ const MealItem = (props) => {
         <div className={classes.price}>{price}</div>
       </div>
 
-      <div></div>
+      <div>
+        <MealItemForm id={props.id} />
+      </div>
     </li>
   );
 };
