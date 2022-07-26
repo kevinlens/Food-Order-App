@@ -1,13 +1,13 @@
 //REACT TOOLS
-import {Fragment} from 'react';
-import ReactDOM from 'react-dom'
+import { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 
 //CLASSES
 import classes from './Modal.module.css';
 
 //Dark screen which you click on to exit modal
 const Backdrop = (props) => {
-  return <div className={classes.backdrop}></div>;
+  return <div className={classes.backdrop} onClick={props.onCloseCart}></div>;
 };
 
 //Information/Data for display
@@ -25,7 +25,7 @@ const portalElement = document.getElementById('overlay-root');
 const Modal = (props) => {
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(<Backdrop onCloseCart={props.onCloseCart}/>, portalElement)}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement

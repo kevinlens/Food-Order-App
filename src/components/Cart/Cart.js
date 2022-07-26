@@ -2,7 +2,7 @@
 import classes from './Cart.module.css';
 
 //IMPORTED COMPONENTS
-import Modal from '../UI/Modal'
+import Modal from '../UI/Modal';
 
 //COMPONENTS
 const Cart = (props) => {
@@ -16,16 +16,18 @@ const Cart = (props) => {
   );
 
   return (
-    <Modal>
+    <Modal onCloseCart={props.onCloseCart}>
       {cartItems}
       <div className={classes.total}>
         <div>Total Amount</div>
         <div>35.62</div>
       </div>
-      <div>
-        <button className={classes['button--alt']}>Close</button>
+      <div className={classes.actions}>
+        <button className={classes['button--alt']} onClick={props.onCloseCart}>
+          Close
+        </button>
         <button className={classes.button}>Order</button>
-      </div> 
+      </div>
     </Modal>
   );
 };
