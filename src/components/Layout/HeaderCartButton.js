@@ -11,16 +11,19 @@ import classes from './HeaderCartButton.module.css';
 //TO USE AS AN ARGUMENT FOF useContext HOOK
 import CartContext from '../../store/Cart-Context';
 
+//COMPONENT
 const HeaderCartButton = (props) => {
-  //accepts the context value outputted by React.createContext and then
-  //re-render the component whenever its value changes.
-  cartCtx = useContext(CartContext);
 
-  //Get sum value of items in cart
-  const numberOfCartItems = cartCtx.items.reducer((previousAmount, item) => {
-    return previousAmount + item.amount;
+  //establish a connection, accepts the context value outputted
+  //by React.createContext and then re-render the component
+  //whenever its value changes.
+  const cartCtx = useContext(CartContext);
+
+  //Get sum of items added
+  const numberOfCartItems = cartCtx.items.reduce((previousQuantity, item) => {
+    return previousQuantity + item.quantity;
   }, 0);
-      
+
   return (
     <button className={classes.button} onClick={props.onClick}>
       <span className={classes.icon}>

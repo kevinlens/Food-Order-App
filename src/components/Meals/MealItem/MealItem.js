@@ -1,12 +1,35 @@
+//REACT TOOLS
+import { useContext } from 'react';
+
 //CLASSES
 import classes from './MealItem.module.css';
+
+//IMPORT ORIGIN OF CONTEXT from React.createContext
+//TO USE AS AN ARGUMENT FOF useContext HOOK
+import CartContext from '../../../store/Cart-Context';
 
 //IMPORTED COMPONENT 
 import MealItemForm from './MealItemForm';
 
 //COMPONENT
 const MealItem = (props) => {
+
+  //establish a connection, accepts the context value outputted 
+  //by React.createContext and then re-render the component 
+  //whenever its value changes.
+  const cartCtx = useContext(CartContext);
+
+  //Output --> ${price}
   const price = `$${props.price.toFixed(2)}`;
+
+  const addToCartHandler = quantity => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      quantity: quantity,
+      price: props.price
+    })
+  }
 
   return (
     <li className={classes.meal}>
@@ -17,7 +40,7 @@ const MealItem = (props) => {
       </div>
 
       <div>
-        <MealItemForm id={props.id} />
+        <MealItemForm onAddToCart={addToCartHandler} id={props.id} />
       </div>
     </li>
   );
