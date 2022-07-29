@@ -14,7 +14,7 @@ import CartContext from '../../store/Cart-Context';
 //COMPONENT
 const HeaderCartButton = (props) => {
 
-  //establish a connection, accepts the context value outputted
+  //establish a connection with Context, accepts the context value outputted
   //by React.createContext and then re-render the component
   //whenever its value changes.
   const cartCtx = useContext(CartContext);

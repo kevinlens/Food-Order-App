@@ -14,8 +14,8 @@ import MealItemForm from './MealItemForm';
 //COMPONENT
 const MealItem = (props) => {
 
-  //establish a connection, accepts the context value outputted 
-  //by React.createContext and then re-render the component 
+  //establish a connection with Context, accepts the context value outputted
+  //by React.createContext and then re-render the component
   //whenever its value changes.
   const cartCtx = useContext(CartContext);
 

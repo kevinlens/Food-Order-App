@@ -1,16 +1,51 @@
+//REACT TOOLS
+import { useContext } from 'react';
+
 //CLASSES
 import classes from './Cart.module.css';
 
 //IMPORTED COMPONENTS
 import Modal from '../UI/Modal';
+import CartItem from './CartItem';
+
+//IMPORT ORIGIN OF CONTEXT from React.createContext
+//TO USE AS AN ARGUMENT FOF useContext HOOK
+import CartContext from '../../store/Cart-Context';
 
 //COMPONENTS
 const Cart = (props) => {
+  //establish a connection with Context, accepts the context value outputted
+  //by React.createContext and then re-render the component
+  //whenever its value changes.
+  const cartCtx = useContext(CartContext);
+
+  // if there are items in cart allow users to order items
+  const hasItems = cartCtx.items.length > 0;
+
+  //rounded total amount
+  const totalPrice = `$${cartCtx.totalPrice.toFixed(2)}`;
+
+  const cartItemRemoveHandler = id => {
+
+  }
+
+  const cartItemAddHandler = item =>{
+
+  }
+
+  //Output every item in our cart in an unordered list format
   //<ul> li>food<li> </ul>
   const cartItems = (
     <ul className={classes['cart-items']}>
-      {[{ id: 'c1', name: 'Sushi', amount: 2, price: 12.99 }].map((item) => (
-        <li key={item.id}>{item.name}</li>
+      {cartCtx.items.map((item) => (
+        <CartItem
+          key={item.id}
+          name={item.name}
+          quantity={item.quantity}
+          price={item.price}
+          onRemoveItem={cartItemRemoveHandler.bind }
+          onAddItem={cartItemAddHandler}
+        />
       ))}
     </ul>
   );
@@ -20,13 +55,13 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <div>Total Amount</div>
-        <div>35.62</div>
+        <div>{totalPrice}</div>
       </div>
       <div className={classes.actions}>
         <button className={classes['button--alt']} onClick={props.onCloseCart}>
           Close
         </button>
-        <button className={classes.button}>Order</button>
+        {hasItems && <button className={classes.button}>Order</button>}
       </div>
     </Modal>
   );
