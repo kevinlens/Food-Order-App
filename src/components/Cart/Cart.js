@@ -24,14 +24,17 @@ const Cart = (props) => {
 
   //rounded total amount
   const totalPrice = `$${cartCtx.totalPrice.toFixed(2)}`;
+  
+  //Add Item to Cart
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, quantity: 1 });
+  };
+  
+  //Remove Item from Cart
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
 
-  const cartItemRemoveHandler = id => {
-
-  }
-
-  const cartItemAddHandler = item =>{
-
-  }
 
   //Output every item in our cart in an unordered list format
   //<ul> li>food<li> </ul>
@@ -43,8 +46,8 @@ const Cart = (props) => {
           name={item.name}
           quantity={item.quantity}
           price={item.price}
-          onRemoveItem={cartItemRemoveHandler.bind }
-          onAddItem={cartItemAddHandler}
+          onRemoveItem={() => cartItemRemoveHandler(item.id)}
+          onAddItem={() => cartItemAddHandler(item)}
         />
       ))}
     </ul>
